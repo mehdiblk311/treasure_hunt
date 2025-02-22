@@ -14,23 +14,47 @@ LOGO_IMAGES = ["sole.png", "flavoria.png", "lions.png", "ucraft.png"]
 
 def get_header_css():
     return """
-    header {
-        width: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        display: flex;
-        justify-content: center;
-        padding: 15px;
-        background-color: rgba(0, 0, 50, 0.8);
-        box-shadow: 0 0 10px rgba(0, 0, 255, 0.6);
-        z-index: 1000;
-    }
-    .logo-container {
-        display: flex;
-        gap: 50px;
-        align-items: center;
-    }
+header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            background-color: rgba(0, 0, 50, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 255, 0.6);
+            z-index: 1000;
+        }
+        #incorrect{
+            background-color: #FF0000;
+            box-shadow: 0 0 10px #350808;
+        }
+        .logo-container {
+            display: flex;
+            justify-content: flex-start; /* Aligner les logos à gauche */
+            width: 100%;
+            max-width: 900px;
+            margin-bottom:-25px;
+            align-items: center;
+        }
+        .logo-container img {
+            width: 100%;
+            height: 100px;
+        }
+        /* Ajustement de l'espacement entre les images */
+        .logo-container img:nth-child(1) {
+            margin-right: 100px;
+        }
+        .logo-container img:nth-child(2) {
+            margin-right: 100px;
+        }
+        .logo-container img:nth-child(3) {
+            margin-right: 100px;
+        }
+        .logo-container img:nth-child(4) {
+            margin-left: 100px;
+        }
     """
 
 @app.route("/card")
@@ -92,13 +116,14 @@ def card():
             <header>
                 <div class="logo-container">
                     <img src="{{ url_for('static', filename=logos[0]) }}" style="height: 40px">
-                    <img src="{{ url_for('static', filename=logos[1]) }}" style="height: 40px">
-                    <img src="{{ url_for('static', filename=logos[2]) }}" style="height: 40px">
-                    <img src="{{ url_for('static', filename=logos[3]) }}" style="height: 40px">
+                    <img src="{{ url_for('static', filename=logos[1]) }}" >
+                    <img src="{{ url_for('static', filename=logos[2]) }}" >
+                    <img src="{{ url_for('static', filename=logos[3]) }}" >
                 </div>
             </header>
 
             <div class="container">
+                <h1>Welcom to squid game </h1>
                 <h2>🃏 Found Card !</h2>
                 <form method="post" action="/reveal">
                     <input type="hidden" name="id" value="{{ card_id }}">
@@ -169,12 +194,12 @@ def reveal():
                 </style>
             </head>
             <body>
-                <header>
+                <header id="incorrect">
                     <div class="logo-container">
                         <img src="{{ url_for('static', filename=logos[0]) }}" style="height: 40px">
-                        <img src="{{ url_for('static', filename=logos[1]) }}" style="height: 40px">
-                        <img src="{{ url_for('static', filename=logos[2]) }}" style="height: 40px">
-                        <img src="{{ url_for('static', filename=logos[3]) }}" style="height: 40px">
+                        <img src="{{ url_for('static', filename=logos[1]) }}" >
+                        <img src="{{ url_for('static', filename=logos[2]) }}">
+                        <img src="{{ url_for('static', filename=logos[3]) }}">
                     </div>
                 </header>
                 <audio autoplay>
@@ -221,6 +246,7 @@ def reveal():
                 }
                 @keyframes fadeIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
                 h2 { font-size: 27px; color: #ff007f; text-shadow: 0 0 5px #ff007f; }
+                h1 { font-size: 27px; color: #00ff00; text-shadow: 0 0 5px #00ff00;text-transform:uppercase; }
                 .value { font-size: 36px; font-weight: bold; color: #00ffff; text-shadow: 0 0 10px #00ffff; margin: 20px 0; }
                 .return-btn {
                     background: #ff007f;
@@ -239,12 +265,14 @@ def reveal():
             <header>
                 <div class="logo-container">
                     <img src="{{ url_for('static', filename=logos[0]) }}" style="height: 40px">
-                    <img src="{{ url_for('static', filename=logos[1]) }}" style="height: 40px">
-                    <img src="{{ url_for('static', filename=logos[2]) }}" style="height: 40px">
-                    <img src="{{ url_for('static', filename=logos[3]) }}" style="height: 40px">
+                    <img src="{{ url_for('static', filename=logos[1]) }}" >
+                    <img src="{{ url_for('static', filename=logos[2]) }}" >
+                    <img src="{{ url_for('static', filename=logos[3]) }}" >
                 </div>
             </header>
+     <h1>Welcom to squid game </h1>
             <div class="container">
+                <h1>Welcom to squid game </h1>
                 <h2>🎴 Card Value :</h2>
                 <p class="value">{{ value }}</p>
                 <button class="return-btn" onclick="window.location.href='/card?id={{ card_id }}'">🔄 Retry</button>
