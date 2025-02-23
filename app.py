@@ -270,8 +270,9 @@ def reveal():
                     <img src="{{ url_for('static', filename=logos[3]) }}" >
                 </div>
             </header>
-     <h1>WELCOM TO LIONS GAME </h1>
+     
             <div class="container">
+                <h1>WELCOM TO LIONS GAME </h1>
                 <h2>🎴 Card Value :</h2>
                 <p class="value">{{ value }}</p>
                 <button class="return-btn" onclick="window.location.href='/card?id={{ card_id }}'">🔄 Retry</button>
