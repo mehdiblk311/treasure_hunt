@@ -92,6 +92,7 @@ def card():
                     width: 350px;
                     margin-top: 80px;
                 }
+                h1 { font-size: 27px; color: #00ff00; text-shadow: 0 0 5px #00ff00;text-transform:uppercase; }
                 h2 { font-size: 24px; color: #ff007f; text-shadow: 0 0 5px #ff007f; }
                 input, button {
                     width: 100%;
